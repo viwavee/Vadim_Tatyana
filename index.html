@@ -45,11 +45,20 @@
     body{
       font-family:"Jost",sans-serif;
       color:var(--text);
-      background:
-        linear-gradient(rgba(248,242,231,0.24), rgba(248,242,231,0.34)),
-        url('Carpet.jpg') center top / cover fixed no-repeat;
+      background:transparent;
       overflow-x:hidden;
       line-height:1.65;
+    }
+
+    /* Фиксированный ковёр — работает на мобильных (fixed на body не работает в iOS/Android) */
+    .bg-carpet{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background:
+        linear-gradient(rgba(248,242,231,0.24), rgba(248,242,231,0.34)),
+        url('Carpet.jpg') center center / cover no-repeat;
+      pointer-events:none;
     }
 
     img{max-width:100%;display:block}
@@ -804,13 +813,6 @@
       .section-box{padding:28px 16px}
       .hero-card{padding:34px 18px 30px}
 
-      /* Ковёр виден на мобиле — уменьшаем затемнение */
-      body{
-        background:
-          linear-gradient(rgba(248,242,231,0.18), rgba(248,242,231,0.26)),
-          url('Carpet.jpg') center top / 200% auto fixed no-repeat;
-      }
-
       /* Центрирование всех заголовков и блоков */
       .section-title, .section-label, .section-subtitle,
       .invitation-text, .dress-intro{
@@ -853,6 +855,7 @@
   </style>
 </head>
 <body>
+  <div class="bg-carpet"></div>
   <div class="page-overlay"></div>
 
   <!-- ===== HERO ===== -->
