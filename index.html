@@ -75,9 +75,13 @@
     .container{
       width:min(1080px, 100%);
       margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
     .section-box{
+      width:100%;
       background:var(--card);
       backdrop-filter: blur(3px);
       border:1px solid rgba(111,29,27,0.15);
@@ -109,11 +113,13 @@
 
     .section-title{
       text-align:center;
-      font-family:"Marck Script",cursive;
-      font-size:clamp(2.3rem, 6vw, 4rem);
+      font-family:"Cormorant Garamond",serif;
+      font-weight:600;
+      font-size:clamp(2.4rem, 6vw, 4rem);
       color:var(--burgundy);
       line-height:1.1;
       margin-bottom:18px;
+      letter-spacing:1px;
     }
 
     .section-subtitle{
@@ -265,9 +271,10 @@
     /* ===== 2 МЕСТО ===== */
     .place-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:minmax(0, 560px);
       gap:24px;
       align-items:stretch;
+      justify-content:center;
     }
 
     .place-card, .mini-card{
@@ -350,7 +357,7 @@
       position:absolute;
       top:12px;
       bottom:12px;
-      left:116px;
+      left:131px;
       width:2px;
       background:linear-gradient(to bottom, rgba(183,138,63,.65), rgba(111,29,27,.25));
     }
@@ -359,7 +366,7 @@
       display:grid;
       grid-template-columns:90px 26px 1fr;
       gap:18px;
-      align-items:flex-start;
+      align-items:center;
       margin-bottom:26px;
       position:relative;
     }
@@ -371,7 +378,6 @@
       font-weight:700;
       text-align:right;
       line-height:1.2;
-      padding-top:2px;
     }
 
     .timeline-dot{
@@ -380,10 +386,10 @@
       border-radius:50%;
       background:var(--gold);
       border:4px solid #fff8ef;
-      box-shadow:0 0 0 1px rgba(111,29,27,.15);
-      margin-top:6px;
+      box-shadow:0 0 0 2px rgba(111,29,27,.18);
       position:relative;
       z-index:1;
+      justify-self:center;
     }
 
     .timeline-card{
@@ -523,13 +529,14 @@
       max-width:900px;
       margin:0 auto;
       background:
-        linear-gradient(135deg, rgba(18, 18, 18, 0.16), rgba(6, 6, 6, 0.82));
+        linear-gradient(135deg, rgba(56,29,24,.88), rgba(40,18,15,.94));
       color:#fff9f0;
       border-radius:28px;
       padding:34px 26px;
-      box-shadow:0 18px 45px rgba(53,39,30,.25);
+      box-shadow:0 18px 45px rgba(53,39,30,.35);
       position:relative;
       overflow:hidden;
+      border:1px solid rgba(255,235,210,.14);
     }
 
     .party-card::before{
@@ -793,27 +800,54 @@
     }
 
     @media (max-width: 700px){
-      section{padding:62px 14px}
-      .section-box{padding:30px 16px}
+      section{padding:52px 14px}
+      .section-box{padding:28px 16px}
       .hero-card{padding:34px 18px 30px}
+
+      /* Ковёр виден на мобиле — уменьшаем затемнение */
+      body{
+        background:
+          linear-gradient(rgba(248,242,231,0.18), rgba(248,242,231,0.26)),
+          url('Carpet.jpg') center top / 200% auto fixed no-repeat;
+      }
+
+      /* Центрирование всех заголовков и блоков */
+      .section-title, .section-label, .section-subtitle,
+      .invitation-text, .dress-intro{
+        text-align:center;
+      }
+      .container{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+      }
+      .section-box{
+        width:100%;
+      }
+
+      /* Таймлайн */
       .timeline{
         padding-left:0;
+        width:100%;
       }
-      .timeline::before{
-        left:77px;
+
+      /* Дресс-код — фото не занимает весь экран */
+      .dress-photo{
+        aspect-ratio: 3 / 2;
+        max-height:220px;
       }
-      .timeline-item{
-        grid-template-columns:64px 20px 1fr;
-        gap:12px;
-      }
-      .timeline-time{
-        font-size:1.12rem;
-      }
-      .timeline-title{
-        font-size:1.22rem;
-      }
+
+      /* RSVP форма */
       .rsvp-form{
-        padding:24px 16px;
+        padding:22px 14px;
+      }
+
+      /* Party card */
+      .party-card{
+        padding:26px 18px;
+      }
+      .party-title{
+        font-size:clamp(1.9rem, 7vw, 3rem);
       }
     }
   </style>
@@ -875,9 +909,10 @@
                 16:00
               </div>
             </div>
-        </div>
-      </div>
-    </div>
+          </div>
+        </div><!-- /place-grid -->
+      </div><!-- /section-box -->
+    </div><!-- /container -->
   </section>
 
   <!-- ===== 3. РАСПИСАНИЕ ===== -->
@@ -1061,14 +1096,15 @@
             Просим дать ответ заранее
           </div>
 
-          <button type="submit" class="submit-btn">
+         
+          <button type="submit" class="submit-btn full">
             <i class="fa-solid fa-paper-plane"></i>
             Отправить ответ
           </button>
 
-          <div class="save-status save-loading" id="loadingStatus">Отправка...</div>
-          <div class="save-status save-success" id="successStatus">Спасибо! Ваш ответ получен 💛</div>
-          <div class="save-status save-error" id="errorStatus">Не удалось отправить ответ. Попробуйте ещё раз позже.</div>
+          <div class="save-status save-loading full" id="loadingStatus">Отправка...</div>
+          <div class="save-status save-success full" id="successStatus">Спасибо! Ваш ответ получен 💛</div>
+          <div class="save-status save-error full" id="errorStatus">Не удалось отправить ответ. Попробуйте ещё раз позже.</div>
         </form>
       </div>
     </div>
@@ -1096,7 +1132,7 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ===== ФОРМА RSVP =====
+        // ===== ФОРМА RSVP =====
     const form = document.getElementById('rsvpForm');
     const loading = document.getElementById('loadingStatus');
     const successMsg = document.getElementById('successStatus');
@@ -1139,11 +1175,10 @@
       const payload = {
         guestName: guestName.value.trim(),
         attendance: attendance ? attendance.value : '',
-        drinks: drinks.length ? drinks.join(', ') : 'Не указано',
-        comment: document.getElementById('comment').value.trim() || '—'
+        drinks: drinks.length ? drinks.join(', ') : 'Не указано'
       };
 
-      const scriptURL = ""; // СЮДА ВСТАВИТЬ URL Google Apps Script, если нужна отправка в таблицу
+      const scriptURL = "https://script.google.com/macros/s/AKfycby7CMItkjc4STp40YYg7hKWUlgTjJbpRnwvf5_f5PF-WIUcA9OqsaL_Nh3Bte8W0neusw/exec";
 
       try{
         if(scriptURL){
@@ -1154,7 +1189,6 @@
             body: JSON.stringify(payload)
           });
         } else {
-          // если скрипт пока не подключен — просто показываем успешную отправку
           await new Promise(resolve => setTimeout(resolve, 700));
         }
 
