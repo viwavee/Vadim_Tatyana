@@ -50,21 +50,14 @@
       line-height:1.65;
     }
 
-    /* Фиксированный ковёр — работает на мобильных (fixed на body не работает в iOS/Android) */
+    /* Фиксированный ковёр — работает на мобильных */
     .bg-carpet{
       position:fixed;
-      inset:0;
+      top:0; left:0;
+      width:100%; height:100%;
       z-index:-1;
       pointer-events:none;
-    }
-    .bg-carpet::before{
-      content:"";
-      position:absolute;
-      inset:0;
       background: url('Carpet.jpg') center center / cover no-repeat;
-      /* На iOS transform: translateZ(0) предотвращает пересчёт при скролле */
-      transform: translateZ(0);
-      will-change: transform;
     }
     .bg-carpet::after{
       content:"";
@@ -197,10 +190,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(40,20,15,.35), rgba(40,20,15,.62)),
-        url('Carpet') center center / cover no-repeat;
-      filter:saturate(0.95) contrast(1.02);
+      background: linear-gradient(180deg, rgba(40,20,15,.45), rgba(40,20,15,.65));
       z-index:0;
     }
 
@@ -905,7 +895,7 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="hero-card fade-in">
+    <div class="hero-card">
      
       <h1 class="hero-title">Вадим &amp; Татьяна</h1>
       <div class="hero-date">25 · 07 · 2026</div>
@@ -1014,7 +1004,7 @@
                 Приветствуются: шаровидные туи, самшиты, можжевельник, карликовая сосна, туя брабант, туя смагард , гортензии, пионы, лиатрис и тд.
           </div>
           <div class="flowers-photo">
-            <img src="Garden.jpg">
+           <img src="Garden.jpg">
           </div>
         </div>
       </div>
@@ -1226,7 +1216,7 @@
         drinks: drinks.length ? drinks.join(', ') : 'Не указано'
       };
 
-      const scriptURL = "https://script.google.com/macros/s/AKfycby7CMItkjc4STp40YYg7hKWUlgTjJbpRnwvf5_f5PF-WIUcA9OqsaL_Nh3Bte8W0neusw/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxO-RtaqHb-c8JYahzXRebcSB7mFqzdOD6kFkZwMIjZfdvBp_pVkAY7SzEIHneM4VVlWg/exec";
 
       try{
         if(scriptURL){
