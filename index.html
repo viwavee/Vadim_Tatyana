@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Вадим & Татьяна — Свадьба 25.07.2026</title>
@@ -232,11 +232,12 @@
     }
 
     .hero-date{
-      font-family:"Cormorant Garamond",serif;
-      font-size:clamp(1.6rem, 4.5vw, 2.5rem);
-      letter-spacing:6px;
+      font-family:"Marck Script",cursive;
+      font-size:clamp(2rem, 6vw, 3.2rem);
+      letter-spacing:3px;
       margin-bottom:20px;
-      color:#f7dfb0;
+      color:#ffe7b5;
+      text-shadow:0 2px 14px rgba(0,0,0,.32);
     }
 
     .hero-note{
@@ -430,6 +431,21 @@
       gap:24px;
       max-width:900px;
       margin:0 auto;
+    }
+
+    .flowers-photo{
+      width:100%;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 12px 32px var(--shadow);
+      aspect-ratio:16/9;
+    }
+
+    .flowers-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     .flowers-card{
@@ -827,10 +843,20 @@
         width:100%;
       }
 
-      /* Таймлайн */
+      /* Таймлайн — кружочки на линию */
       .timeline{
         padding-left:0;
         width:100%;
+      }
+      .timeline::before{
+        left:72px;
+      }
+      .timeline-item{
+        grid-template-columns:58px 16px 1fr;
+        gap:14px;
+      }
+      .timeline-time{
+        font-size:1.1rem;
       }
 
       /* Дресс-код — фото не занимает весь экран */
@@ -868,10 +894,7 @@
         Дорогие родные и друзья! Мы будем счастливы разделить с вами один из самых важных и тёплых дней нашей жизни.
         Приглашаем вас на нашу свадьбу в атмосфере ретро, любимых советских деталей и душевного праздника.
       </p>
-      <button class="hero-btn" onclick="document.getElementById('invite').scrollIntoView({behavior:'smooth'})">
-        <i class="fas fa-chevron-down"></i>
-      
-      </button>
+
     </div>
   </section>
 
@@ -970,6 +993,9 @@
           <p>
                 Так вы поможете нам создать «Сад воспоминаний», где у каждого из вас будет свое особенное, цветущее место!
                 Приветствуются: шаровидные туи, самшиты, можжевельник, карликовая сосна, туя брабант, туя смагард , гортензии, пионы, лиатрис и тд.
+          </div>
+          <div class="flowers-photo">
+            <img src="garden.jpg" alt="Сад воспоминаний">
           </div>
         </div>
       </div>
